@@ -181,7 +181,7 @@ describe("filterByGenre()", () => {
   });
 });
 
-describe("checkMinMetascores()", () => {
+describe.only("checkMinMetascores()", () => {
   test("should use the `.every()` method", () => {
     const text = checkMinMetascores.toString();
     expect(text).toMatch(/\.every\(.*\)/s);
@@ -204,7 +204,7 @@ describe("checkMinMetascores()", () => {
   });
 });
 
-describe.only("getAllMoviesReleasedAtOrBeforeYear()", () => {
+describe("getAllMoviesReleasedAtOrBeforeYear()", () => {
   test("should use the `.filter()` method", () => {
     const text = filterByGenre.toString();
     expect(text).toMatch(/\.filter\(.*\)/s);
