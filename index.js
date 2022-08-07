@@ -14,7 +14,7 @@ const exampleMovies = require("./movies");
  * @returns {string[]|Error} An array of strings, which are movie titles.
  *
  * NOTE: You must use the `.map()` method.
- * 
+ *
  * EXAMPLE:
  *  getAllMovieTitles(movies);
  *  //> [
@@ -30,7 +30,11 @@ const exampleMovies = require("./movies");
       "James and the Giant Peach",
     ];
  */
-function getAllMovieTitles() {}
+function getAllMovieTitles(movies) {
+  if (!movies.length)
+   throw "No movies available";
+  return movies.map((movie) => movie.title);
+}
 
 /**
  * checkIfAnyMovieHasRating()
@@ -50,7 +54,11 @@ function getAllMovieTitles() {}
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating() {}
+function checkIfAnyMovieHasRating(movies, rated = "G") {
+  if (!movies.length) 
+  throw "No movies available";
+  return movies.some((movie) => movie.rated === rated);
+}
 
 /**
  * findById()
@@ -61,14 +69,20 @@ function checkIfAnyMovieHasRating() {}
  * @returns {Object|Error|null} The movie object with the matching `imdbID`.
  *
  * NOTE: You must use the `.find()` method.
- * 
+ *
  * EXAMPLE:
  *  findById(movies, "tt1979376");
  *  //> {
       // Toy Story 4
     };
  */
-function findById() {}
+function findById(movies, id) {
+  if (!movies.length)
+  throw "No movies available";
+  const movie =  movies.find((movie) => movie.imdbID === id);
+  if (!movie) return null;
+  return movie;
+}
 
 /**
  * filterByGenre()
@@ -79,7 +93,7 @@ function findById() {}
  * @returns {Object[]|Error} An array of movies where at least one of the genres matches the `genre` inputted.
  *
  * NOTE: You must use the `.filter()` method.
- * 
+ *
  * EXAMPLE:
  *  filterByGenre(movies, "Mystery");
  *  //> [
@@ -92,7 +106,13 @@ function findById() {}
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+function filterByGenre(movies, genre) {
+  if (!movies.length) 
+  throw "No movies available";
+  return movies.filter((movie) =>
+    movie.genre.toLowerCase().includes(genre.toLowerCase())
+  );
+}
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
@@ -103,7 +123,7 @@ function filterByGenre() {}
  * @returns {Object[]|Error} An array of movies where the `released` year is equal to or less than the inputted year.
  *
  * NOTE: You must use the `.filter()` method.
- * 
+ *
  * EXAMPLE:
  *  getAllMoviesReleasedAtOrBeforeYear(movies, 2000);
  *  //> [
@@ -118,7 +138,14 @@ function filterByGenre() {}
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
+  if (!movies.length) 
+  throw "No movies available";
+  return movies.filter((movie) => {
+    const released = movie.released.split(" ")[2];
+    return parseInt(released) <= year;
+  });
+}
 
 /**
  * checkMinMetascores()
@@ -134,7 +161,11 @@ function getAllMoviesReleasedAtOrBeforeYear() {}
  *  checkMinMetascores(movies, 90));
  *  //>  false
  */
-function checkMinMetascores() {}
+function checkMinMetascores(movies, score) {
+  if (!movies.length) 
+  throw "No movies available";
+  return movies.every((movie) => movie.metascore >= score);
+}
 
 /**
  * getRottenTomatoesScoreByMovie()
@@ -142,7 +173,7 @@ function checkMinMetascores() {}
  * Transform each movie, returning an array of objects where the key is the title of the movie and the value is the score received from Rotten Tomatoes. If there are no movies, throw an error with a message.
  * @param {Object[]} movies - An array of movies. See the `movies.js` file for an example of this array.
  * @returns {Object[]|Error} An array of movie objects where the key is the movie title and the value is the score received from Rotten Tomatoes.
- * 
+ *
  * NOTE: You must use both the `.map()` method and the `.find()` method.
  *
  * EXAMPLE:
@@ -160,7 +191,14 @@ function checkMinMetascores() {}
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() {}
+function getRottenTomatoesScoreByMovie(movies) {
+  if (!movies.length)
+   throw "No movies available";
+return movies.map((movie) => {
+    const rotton = movie.ratings.find((r) => r.source === "Rotten Tomatoes");
+    return { [movie.title]: rotton.value };
+  });
+}
 
 // Do not change anything below this line.
 module.exports = {
