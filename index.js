@@ -139,7 +139,12 @@ function filterByGenre(movies, g) {
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
+    //throw error if the movies array is empty
+     if (!movies.length) throw "Error";
+     //use filter to check to see if the movie released year is less than or equal to the given year. split at the space and grab the 2 index to retrieve the year
+     return movies.filter(({ released }) => released.split(" ")[2] <= year);
+}
 
 /**
  * checkMinMetascores()
