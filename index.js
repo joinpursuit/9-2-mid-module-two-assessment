@@ -74,7 +74,10 @@ return movies.some(el => el['rated'] === rating);
       // Toy Story 4
     };
  */
-function findById() {}
+function findById(movies, id) {
+  if (!movies.length) throw 'There are no movies.';
+  return movies.find(el => el['imdbID'] === id) || null;  
+}
 
 /**
  * filterByGenre()
