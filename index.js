@@ -191,7 +191,17 @@ function checkMinMetascores(movies, ms) {
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() {}
+function getRottenTomatoesScoreByMovie(movies) {
+    //throw error if the movies array is empty
+    if (!movies.length) throw "Error";
+    //iterate through each movie, find the source that's strictly equal to "Rotten Tomatoes" and save it under a variable
+    return movies.map((movie) => {
+      const found = movie.ratings.find((s) => 
+      s.source === "Rotten Tomatoes");
+      //assign the movie title and the value of "Rotten Tomatoes" to an object and return it
+     return { [movie.title]: found.value};
+   })
+}
 
 // Do not change anything below this line.
 module.exports = {
