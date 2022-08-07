@@ -30,7 +30,14 @@ const exampleMovies = require("./movies");
       "James and the Giant Peach",
     ];
  */
-function getAllMovieTitles() {}
+function getAllMovieTitles(movies) {
+  // throw an err if the movie.length is false
+  if(!movies.length){
+    throw "the movies array is empty :("
+  }
+  // returns movie titles 
+  return movies.map(movie => movie.title)
+}
 
 /**
  * checkIfAnyMovieHasRating()
@@ -50,7 +57,14 @@ function getAllMovieTitles() {}
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating() {}
+function checkIfAnyMovieHasRating(movies, rating="G") {
+// rating=G is the default
+  if(!movies.length) {
+    throw "movies arrat is empty :("
+  }
+  // checking the movie.rated to see if the movie has a rating
+  return movies.some(movie => movie.rated === rating)
+}
 
 /**
  * findById()
@@ -68,7 +82,18 @@ function checkIfAnyMovieHasRating() {}
       // Toy Story 4
     };
  */
-function findById() {}
+function findById(movies, id) {
+  if(!movies.length) {
+    throw "the movies array is empty :("
+  }
+  // wanted to use this as my return but didn't work out
+  // return movies.find(movie => movie.imdbID === id ? movie : null)
+
+  // this return works but it has a extra step, wanted to keep it a one liner
+  const foundMovie = movies.find(movie => movie.imdbID === id)
+  // checks if foundMovie is true if it is then it return it if not then it will return null
+  return foundMovie ? foundMovie : null
+}
 
 /**
  * filterByGenre()
@@ -92,7 +117,13 @@ function findById() {}
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+function filterByGenre(movies, genre) {
+  if(!movies.length) {
+    throw "movies array is empty :("
+  }
+  // checking if movie.genre includes the given genre using the INCLUDES method and putting toUpperCase to have a the cases the same so case sensitivity doesn't matter
+  return movies.filter(movie => movie.genre.toUpperCase().includes(genre.toUpperCase()))
+}
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
@@ -118,7 +149,23 @@ function filterByGenre() {}
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
+  if(!movies.length) {
+    throw "Movies array is empty :("
+  }
+  // an array of movies
+  const releasedMovies = movies.filter(movie => {
+    // the movie date in a array that has been seperated with spaces (ex: ['19', 'Nov', '2010'])
+    let movieDate = movie.released.split(' ')
+    // grabbing the release year, converting it to a number and storing it in movieYear
+    let movieYear = parseInt(movieDate[2])
+    // my conditional
+    if(movieYear <= year){
+      return movieYear
+    }
+  })
+  return releasedMovies
+}
 
 /**
  * checkMinMetascores()
@@ -134,7 +181,13 @@ function getAllMoviesReleasedAtOrBeforeYear() {}
  *  checkMinMetascores(movies, 90));
  *  //>  false
  */
-function checkMinMetascores() {}
+function checkMinMetascores(movies, metascore) {
+  if(!movies.length){
+    throw "the movies array is empty :("
+  }
+// checking if the movie metascore has a minimum of the metascore given
+  return movies.every(movie => movie.metascore >= metascore)
+}
 
 /**
  * getRottenTomatoesScoreByMovie()
@@ -160,7 +213,16 @@ function checkMinMetascores() {}
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() {}
+function getRottenTomatoesScoreByMovie(movies) {
+  if(!movies.length) {
+    throw "the movies array is empy :("
+  }
+  // transforming the movie array to have the title as the key
+  return movies.map(movie => {
+    // making the value the rotten tomatoes score        
+    return {[movie.title]: movie.ratings.find(rating => rating.source === "Rotten Tomatoes").value} 
+  })
+}
 
 // Do not change anything below this line.
 module.exports = {
