@@ -136,6 +136,7 @@ if (!movies.length){throw "Error"}
     ];
  */
 function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
+  if (!movies.length){throw "error"}
   return movies.filter(function(x){return Number(x.released.slice(7))<= year})
 }
 
@@ -153,7 +154,10 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
  *  checkMinMetascores(movies, 90));
  *  //>  false
  */
-function checkMinMetascores() {}
+function checkMinMetascores(movies, met) {
+  if(!movies.length){throw "error"}
+  return movies.every(function(x){return Number(x.metascore)>= met})
+}
 
 /**
  * getRottenTomatoesScoreByMovie()
