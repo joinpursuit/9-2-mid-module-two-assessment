@@ -262,7 +262,7 @@ describe("getRottenTomatoesScoreByMovie()", () => {
     const actual = () => getRottenTomatoesScoreByMovie([]);
     expect(actual).toThrow();
   });
-  test("should an array of objects, where the key is the movie title and the value is the Rotten Tomatoes score", () => {
+  test("should return an array of objects, where the key is the movie title and the value is the Rotten Tomatoes score", () => {
     const actual = getRottenTomatoesScoreByMovie(movies);
     const expected = [
       { "Toy Story 4": "97%" },

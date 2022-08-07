@@ -30,7 +30,10 @@ const exampleMovies = require("./movies");
       "James and the Giant Peach",
     ];
  */
-function getAllMovieTitles() {}
+function getAllMovieTitles(movies) {
+  if(!movies.length) throw "Error";
+  return movies.map(({title}) => title)
+}
 
 /**
  * checkIfAnyMovieHasRating()
@@ -50,7 +53,10 @@ function getAllMovieTitles() {}
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating() {}
+function checkIfAnyMovieHasRating(movies, rating = "G") {
+  if (!movies.length) throw "Error";
+  return movies.some(({rated}) => rated === rating )
+}
 
 /**
  * findById()
@@ -68,7 +74,10 @@ function checkIfAnyMovieHasRating() {}
       // Toy Story 4
     };
  */
-function findById() {}
+function findById(movies, id) {
+  if (!movies.length) throw "Error";
+  return movies.find(({imdbID}) => imdbID === id ) || null
+}
 
 /**
  * filterByGenre()
@@ -92,7 +101,10 @@ function findById() {}
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+function filterByGenre(movies, type) {
+  if(!movies.length) throw "Error"
+  return movies.filter(({ genre }) => genre.toLowerCase().includes(type.toLowerCase()))
+}
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
@@ -118,7 +130,10 @@ function filterByGenre() {}
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+function getAllMoviesReleasedAtOrBeforeYear(movies,year) {
+  if(!movies.length) throw "Error";
+  return movies.filter(({released}) => released.split(" ")[2] <= year)
+}
 
 /**
  * checkMinMetascores()
@@ -134,7 +149,10 @@ function getAllMoviesReleasedAtOrBeforeYear() {}
  *  checkMinMetascores(movies, 90));
  *  //>  false
  */
-function checkMinMetascores() {}
+function checkMinMetascores(movies, score) {
+  if(!movies.length) throw "Error"
+  return movies.every(({metascore}) => metascore > score ) 
+}
 
 /**
  * getRottenTomatoesScoreByMovie()
@@ -160,7 +178,15 @@ function checkMinMetascores() {}
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() {}
+function getRottenTomatoesScoreByMovie(movies) {
+  if(!movies.length) throw "Error"
+  return movies.map((movie) => {
+    const valuePair = movie.ratings.find((getSource) => { 
+      return getSource.source === "Rotten Tomatoes"
+    });
+    return {[movie.title]: valuePair.value}
+  })
+}
 
 // Do not change anything below this line.
 module.exports = {
