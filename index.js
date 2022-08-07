@@ -108,7 +108,12 @@ function findById(movies, id) {
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+function filterByGenre(movies, g) {
+        //throw error if the movies array is empty
+        if (!movies.length) throw "Error";
+      //use filter to check to see if the genre given is included in the movie genre, if found, return the movie. genres are case sensitive
+        return movies.filter(({ genre }) => genre.toLowerCase().includes(g.toLowerCase()));
+}
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
