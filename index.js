@@ -111,7 +111,13 @@ function findById(movies, id) {
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+function filterByGenre(movies, gen) {
+  if(!movies.length ) {
+    throw "error" 
+  }  
+     return movies.filter(({genre}) => genre.toLowerCase().includes(gen.toLowerCase()))
+ 
+}
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
@@ -137,7 +143,12 @@ function filterByGenre() {}
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
+  if(!movies.length) {
+    throw "error" 
+  }  
+  return movies.filter((movie) => Number(movie.released.slice(6)) <= year)
+}
 
 /**
  * checkMinMetascores()
@@ -153,7 +164,12 @@ function getAllMoviesReleasedAtOrBeforeYear() {}
  *  checkMinMetascores(movies, 90));
  *  //>  false
  */
-function checkMinMetascores() {}
+function checkMinMetascores(movies, metascore) {
+  if(!movies.length) {
+    throw "error" 
+  }  
+  return movies.every(movie => movie.metascore >= metascore)
+}
 
 /**
  * getRottenTomatoesScoreByMovie()
@@ -179,7 +195,15 @@ function checkMinMetascores() {}
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() {}
+function getRottenTomatoesScoreByMovie(movies) {
+  if(!movies.length) {
+    throw "error" 
+  }  
+  return movies.map((movie) => { 
+    let ratingsFound = movie.ratings.find((rt) => rt.source === "Rotten Tomatoes")
+    return {[movie.title] : ratingsFound.value}
+  })
+}
 
 // Do not change anything below this line.
 module.exports = {
