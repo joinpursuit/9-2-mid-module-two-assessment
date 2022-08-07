@@ -151,7 +151,10 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
  *  checkMinMetascores(movies, 90));
  *  //>  false
  */
-function checkMinMetascores() {}
+function checkMinMetascores(movies, metascore) {
+  if (!movies.length) throw "Movies array is empty";
+  return movies.every((movie) => movie.metascore >= metascore);
+}
 
 /**
  * getRottenTomatoesScoreByMovie()
