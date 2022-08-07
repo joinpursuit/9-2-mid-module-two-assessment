@@ -101,7 +101,10 @@ function findById(movies, id) {
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+function filterByGenre(movies, genre) {
+  if (!movies.length) throw 'There are no movies.';
+  return movies.filter(el => el.genre.toLowerCase().includes(genre.toLowerCase())) || []; 
+}
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
@@ -127,7 +130,10 @@ function filterByGenre() {}
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
+  if (!movies.length) throw 'There are no movies.';
+  return movies.filter((movie) => movie.released.slice(7) <= year);
+}
 
 /**
  * checkMinMetascores()
