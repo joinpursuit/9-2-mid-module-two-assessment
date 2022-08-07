@@ -104,7 +104,12 @@ return newElement
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+function filterByGenre(movies, gen) {
+if (!movies.length){throw "Error"}
+
+  return movies.filter(function(x){return (x.genre.toLowerCase()).includes(gen.toLowerCase())})
+
+}
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
