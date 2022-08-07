@@ -59,7 +59,7 @@ function checkIfAnyMovieHasRating(movies, rating = "G") {
   if (!movies.length) {
     throw "error"
   }
-  return movies.some(({rated}) => rated)
+  return movies.some(({rated}) => rating === rated ? true :false)
 }
 
 /**
@@ -196,7 +196,8 @@ function checkMinMetascores(movies, meta) {
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() {}
+function getRottenTomatoesScoreByMovie(movies) {}
+
 
 // Do not change anything below this line.
 module.exports = {
