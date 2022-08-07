@@ -31,8 +31,8 @@ const exampleMovies = require("./movies");
     ];
  */
 function getAllMovieTitles(movies) {
-  if(!movies.length) throw 'The movies array is empty!'
-  return movies.map(movie => movie.title)
+  if (!movies.length) throw "The movies array is empty!";
+  return movies.map((movie) => movie.title);
 }
 
 /**
@@ -53,9 +53,9 @@ function getAllMovieTitles(movies) {
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating(movies,rating = 'G') {
-  if(!movies.length) throw 'The movies array is empty!'
-  return movies.some(movie => movie.rated === rating )
+function checkIfAnyMovieHasRating(movies, rating = "G") {
+  if (!movies.length) throw "The movies array is empty!";
+  return movies.some((movie) => movie.rated === rating);
 }
 
 /**
@@ -74,9 +74,9 @@ function checkIfAnyMovieHasRating(movies,rating = 'G') {
       // Toy Story 4
     };
  */
-function findById(movies,id) {
-  if(!movies.length) throw 'The movies array is empty!'
-  return movies.find(movie => movie.imdbID.includes(id)) || null
+function findById(movies, id) {
+  if (!movies.length) throw "The movies array is empty!";
+  return movies.find((movie) => movie.imdbID.includes(id)) || null;
 }
 
 /**
@@ -101,9 +101,11 @@ function findById(movies,id) {
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre(movies,genre) {
-  if(!movies.length) throw 'The movies array is empty :( '
-  return movies.filter(movie => movie.genre.toLowerCase().includes(genre.toLowerCase()) )
+function filterByGenre(movies, genre) {
+  if (!movies.length) throw "The movies array is empty :( ";
+  return movies.filter((movie) =>
+    movie.genre.toLowerCase().includes(genre.toLowerCase())
+  );
 }
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
@@ -129,9 +131,9 @@ function filterByGenre(movies,genre) {
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear(movies,year) {
-  if(!movies.length) throw 'The movies array is empty :( '
-  return movies.filter(movie => Number(movie.released.slice(7,12)) <= year)
+function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
+  if (!movies.length) throw "The movies array is empty :( ";
+  return movies.filter((movie) => Number(movie.released.slice(7, 12)) <= year);
 }
 
 /**
@@ -148,10 +150,11 @@ function getAllMoviesReleasedAtOrBeforeYear(movies,year) {
  *  checkMinMetascores(movies, 90));
  *  //>  false
  */
-function checkMinMetascores(movies,metascore) {
-  if(!movies.length) throw 'The movies array is empty :( '
-  
-return movies.every(movie => Number(movie.metascore) >= metascore)}
+function checkMinMetascores(movies, metascore) {
+  if (!movies.length) throw "The movies array is empty :( ";
+
+  return movies.every((movie) => Number(movie.metascore) >= metascore);
+}
 
 /**
  * getRottenTomatoesScoreByMovie()
@@ -176,14 +179,15 @@ return movies.every(movie => Number(movie.metascore) >= metascore)}
       { Fantasia: "95%" },
       { "James and the Giant Peach": "91%" },
     ];
- *///find return the value of the first element
- ///returns an ew array
+ */
 function getRottenTomatoesScoreByMovie(movies) {
-  if(!movies.length) throw 'The moves array is empty :('
-  return movies.find(movie => movie.ratings.source === 'Rotten Tomatoes').map(movie =>{
-    return {[movie.title] : movie.values(movie.ratings.source)}
-  })
- }
+  if (!movies.length) throw "The moves array is empty :(";
+  return movies
+    .find((movie) => movie.ratings.source === "Rotten Tomatoes")
+    .map((movie) => {
+      return { [movie.title]: movie.values(movie.ratings.source) };
+    });
+}
 
 // Do not change anything below this line.
 module.exports = {
