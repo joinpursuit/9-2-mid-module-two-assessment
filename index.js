@@ -79,7 +79,12 @@ function checkIfAnyMovieHasRating(movies, rating = "G") {
       // Toy Story 4
     };
  */
-function findById() {}
+function findById(movies, id) {
+      //throw error if the movies array is empty
+      if (!movies.length) throw "Error";
+      //use find to check to see if the imdbID is strictly equal to the given id, if found, return the movie, if not, return null
+      return movies.find(({ imdbID }) => imdbID === id) || null;
+}
 
 /**
  * filterByGenre()
