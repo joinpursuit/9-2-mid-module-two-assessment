@@ -53,7 +53,10 @@ return movies.map(el => el.title);
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating() {}
+function checkIfAnyMovieHasRating(movies, rating = "G") {
+if (!movies.length) throw 'There are no movies.';
+return movies.some(el => el['rated'] === rating);
+}
 
 /**
  * findById()

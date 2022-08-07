@@ -11,7 +11,7 @@ const {
 const movies = require("../movies");
 const alternative = require("./fixtures/alternative-movies");
 
-describe.only("getAllMovieTitles()", () => {
+describe("getAllMovieTitles()", () => {
   test("should use the `.map()` method", () => {
     const text = getAllMovieTitles.toString();
     expect(text).toMatch(/\.map\(.*\)/s);
@@ -43,7 +43,7 @@ describe.only("getAllMovieTitles()", () => {
   });
 });
 
-describe("checkIfAnyMovieHasRating()", () => {
+describe.only("checkIfAnyMovieHasRating()", () => {
   test("should use the `.some()` method", () => {
     const text = checkIfAnyMovieHasRating.toString();
     expect(text).toMatch(/\.some\(.*\)/s);
