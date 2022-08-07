@@ -33,7 +33,6 @@ const exampleMovies = require("./movies");
 function getAllMovieTitles(movies) {
   if (!movies.length) throw "The movies array is empty!";
   return movies.map((movie) => movie.title);
-  
 }
 
 /**
@@ -155,7 +154,6 @@ function checkMinMetascores(movies, metascore) {
   if (!movies.length) throw "The movies array is empty :( ";
 
   return movies.every((movie) => Number(movie.metascore) >= metascore);
- 
 }
 
 /**
@@ -189,7 +187,6 @@ function getRottenTomatoesScoreByMovie(movies) {
     .map((movie) => {
       return { [movie.title]: movie.values(movie.ratings.source) };
     });
-
 }
 
 // Do not change anything below this line.
