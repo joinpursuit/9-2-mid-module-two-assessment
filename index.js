@@ -135,7 +135,9 @@ if (!movies.length){throw "Error"}
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
+  return movies.filter(function(x){return Number(x.released.slice(7))<= year})
+}
 
 /**
  * checkMinMetascores()
