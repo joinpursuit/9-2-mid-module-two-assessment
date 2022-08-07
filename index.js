@@ -57,9 +57,8 @@ function getAllMovieTitles(movies) {
  *  //> false
  */
 function checkIfAnyMovieHasRating(movies, rating = "G") {
-  if (!movies.length || !movies) {
+  if (!movies.length || !movies) 
     throw "There were no movies provided.";
-  }
   return movies.some((m) => m.rated === rating);
 }
 
@@ -80,7 +79,11 @@ function checkIfAnyMovieHasRating(movies, rating = "G") {
       // Toy Story 4
     };
  */
-function findById() {}
+function findById(movies, id) {
+    if (!movies.length) 
+      throw `The "Movies" array is empty!`;
+    return movies.find((movie) => movie.imdbID === id) || null;
+  }
 
 /**
  * filterByGenre()
@@ -104,7 +107,11 @@ function findById() {}
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+function filterByGenre(movies, genre) {
+  if (!movies.length)
+    throw `There were no movies provided in the array!`;
+  return movies.filter((movie) => movie.genre.toLowerCase().includes(genre.toLowerCase()));
+}
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
