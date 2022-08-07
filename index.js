@@ -26,11 +26,15 @@ const exampleMovies = require("./movies");
       "How to Train Your Dragon",
       "Paddington",
       "The Lion King",
-      "Fantasia",
+      "Fantasia",q
       "James and the Giant Peach",
     ];
  */
-function getAllMovieTitles() {}
+function getAllMovieTitles(movies) {
+  if(!movies.length){throw "error"}
+  let newArray =  movies.map(function(x){return x.title})
+  return newArray
+}
 
 /**
  * checkIfAnyMovieHasRating()
