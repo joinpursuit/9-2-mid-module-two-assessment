@@ -3,6 +3,7 @@
 
   Keep in mind that your functions must still have and use a parameter for accepting all movies.
 */
+const movies = require("./movies");
 const exampleMovies = require("./movies");
 // Do not change the line above.
 
@@ -30,7 +31,14 @@ const exampleMovies = require("./movies");
       "James and the Giant Peach",
     ];
  */
-function getAllMovieTitles() {}
+function getAllMovieTitles(movies) { 
+
+  if (!movies.length){
+    throw Error ()
+  }
+  return movies.map(element => element=element.title)
+
+}
 
 /**
  * checkIfAnyMovieHasRating()
@@ -50,7 +58,14 @@ function getAllMovieTitles() {}
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating() {}
+function checkIfAnyMovieHasRating(movies,rating="G") {
+  if (!movies.length){
+    throw Error ()
+  }
+
+ return movies.some(element=>element.rated===rating)
+
+}
 
 /**
  * findById()
@@ -68,7 +83,18 @@ function checkIfAnyMovieHasRating() {}
       // Toy Story 4
     };
  */
-function findById() {}
+function findById(movies, id) {
+  if (!movies.length){
+    throw Error ()
+  }
+ const movieFounded = movies.find(element=>element.imdbID===id)
+
+ if (!movieFounded) {
+  return null
+ }
+
+ return movieFounded 
+}
 
 /**
  * filterByGenre()
@@ -92,7 +118,35 @@ function findById() {}
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+
+ 
+
+function filterByGenre(movies, genre ) {
+  if (!movies.length){
+    throw Error ()
+  }
+
+  const arrayOfMatch = movies.filter(element=>{
+
+    const genreArr = element.genre.split(', ')
+
+    if (genreArr.find(genero => genero.toLowerCase() === genre.toLowerCase())) {
+              return true
+          }
+    
+          return false
+
+
+  })
+    
+   
+  if (!arrayOfMatch.length) {
+    return []
+   }
+
+   return arrayOfMatch
+
+}
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
@@ -118,7 +172,32 @@ function filterByGenre() {}
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+
+   // *****ojo hay que hacer split para evaluar solo el ano*******
+
+  // released: "15 Jun 2018",
+function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
+  if (!movies.length){
+    throw Error ()
+  }
+  const arrayOfMatchYear = movies.filter(element=>{
+    const numbersArr = element.released.split(' ')
+
+    if (numbersArr[2] <= year) {
+              return true
+          }
+      
+          return false
+
+  })
+
+  // if (!arrayOfMatchYear.length) {
+  //   throw Error ()
+  //  }
+
+   return arrayOfMatchYear
+
+}
 
 /**
  * checkMinMetascores()
@@ -134,7 +213,13 @@ function getAllMoviesReleasedAtOrBeforeYear() {}
  *  checkMinMetascores(movies, 90));
  *  //>  false
  */
-function checkMinMetascores() {}
+function checkMinMetascores(movies, metascore) {
+  if (!movies.length){
+    throw Error ()
+  }
+
+  return movies.every(element=> element.metascore>=metascore)
+}
 
 /**
  * getRottenTomatoesScoreByMovie()
@@ -160,7 +245,37 @@ function checkMinMetascores() {}
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() {}
+//========WE need to walking through this with FIND. 
+    // ratings: [
+    //   {
+    //     source: "Internet Movie Database",
+    //     value: "7.6/10",
+    //   },
+    //   {
+    //     source: "Rotten Tomatoes",
+    //     value: "93%",
+    //   },
+    //   {
+    //     source: "Metacritic",
+    //     value: "80/100",
+    //   },
+    // ],
+
+   
+      // return pokemon.filter(currentPokemon => 
+      //   currentPokemon.types.find(currentPokemonType => currentPokemonType.type.name.toLowerCase() === type.toLowerCase()))
+    
+    
+function getRottenTomatoesScoreByMovie(movies) {
+  if (!movies.length){
+    throw Error ()
+  }
+  return movies.map(element=> ({[element.title]:element.ratings.find(lookingRate=> {
+    lookingRate.value.length === 3
+    return lookingRate.value.lengt===3
+  } )}) )
+
+}
 
 // Do not change anything below this line.
 module.exports = {
