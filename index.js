@@ -118,6 +118,12 @@ function filterByGenre(movies, genre) {
   if (movies.length === 0) {
     throw "Error";
   }
+
+  let movieByGenre = [];
+
+  movieByGenre = movies.filter((movie) => {
+    return movie.genre;
+  });
 }
 
 /**
