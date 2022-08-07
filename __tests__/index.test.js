@@ -43,7 +43,7 @@ describe("getAllMovieTitles()", () => {
   });
 });
 
-describe.only("checkIfAnyMovieHasRating()", () => {
+describe("checkIfAnyMovieHasRating()", () => {
   test("should use the `.some()` method", () => {
     const text = checkIfAnyMovieHasRating.toString();
     expect(text).toMatch(/\.some\(.*\)/s);
@@ -76,7 +76,7 @@ describe.only("checkIfAnyMovieHasRating()", () => {
   });
 });
 
-describe("findById()", () => {
+describe.only("findById()", () => {
   test("should use the `.find()` method", () => {
     const text = findById.toString();
     expect(text).toMatch(/\.find\(.*\)/s);

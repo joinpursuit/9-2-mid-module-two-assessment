@@ -84,7 +84,13 @@ function checkIfAnyMovieHasRating(movies, rating = "G") {
       // Toy Story 4
     };
  */
-function findById() {}
+function findById(movies, id) {
+  if (movies.length === 0) {
+    throw "Error";
+  }
+
+  return movies.find(({ imdbID }) => imdbID === id) || null;
+}
 
 /**
  * filterByGenre()
@@ -108,7 +114,11 @@ function findById() {}
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+function filterByGenre(movies, genre) {
+  if (movies.length === 0) {
+    throw "Error";
+  }
+}
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
@@ -134,7 +144,15 @@ function filterByGenre() {}
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
+  if (movies.length === 0) {
+    throw "Error";
+  }
+
+  return movies.filter((movie) => {
+    movie.year;
+  });
+}
 
 /**
  * checkMinMetascores()
@@ -150,7 +168,11 @@ function getAllMoviesReleasedAtOrBeforeYear() {}
  *  checkMinMetascores(movies, 90));
  *  //>  false
  */
-function checkMinMetascores() {}
+function checkMinMetascores(movies, metascore) {
+  if (movies.length === 0) {
+    throw "Error";
+  }
+}
 
 /**
  * getRottenTomatoesScoreByMovie()
@@ -176,7 +198,11 @@ function checkMinMetascores() {}
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() {}
+function getRottenTomatoesScoreByMovie(movies) {
+  if (movies.length === 0) {
+    throw "Error";
+  }
+}
 
 // Do not change anything below this line.
 module.exports = {
