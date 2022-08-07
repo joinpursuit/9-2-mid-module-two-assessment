@@ -30,7 +30,11 @@ const exampleMovies = require("./movies");
       "James and the Giant Peach",
     ];
  */
-function getAllMovieTitles() {}
+function getAllMovieTitles(movies) {
+  if(!movies.length) throw "Error"; // if movies array is empty throw an error
+  return movies.map(({title}) => title) // loop thru the movies array to get all the movie titles and output each name by using destructuring.
+  // movies.map((movie) => {return movie.title}) alternative solution
+}
 
 /**
  * checkIfAnyMovieHasRating()
@@ -50,7 +54,11 @@ function getAllMovieTitles() {}
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating() {}
+function checkIfAnyMovieHasRating(movies, rating = "G") {
+  if (!movies.length) throw "Error"; //if movies array is empty throw an error
+  return movies.some(({rated}) => rated === rating ) //loop thru array to find if any movie have a certain rating (destructured solution)
+}
+// movies.some((movie) => {return movie.rated === rating}) alternate solution
 
 /**
  * findById()
@@ -68,7 +76,11 @@ function checkIfAnyMovieHasRating() {}
       // Toy Story 4
     };
  */
-function findById() {}
+function findById(movies, id) {
+  if (!movies.length) throw "Error"; //if movies array is empty throw an error
+  return movies.find(({imdbID}) => imdbID === id ) || null 
+  // destructured solution to iterate thru movies array. Find whether the imdbID is strictly equal to the id provided  and if no match return null
+}
 
 /**
  * filterByGenre()
@@ -92,8 +104,12 @@ function findById() {}
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
-
+function filterByGenre(movies, type) {
+  if(!movies.length) throw "Error" // if movies array is empty throw an error
+  return movies.filter(({ genre }) => genre.toLowerCase().includes(type.toLowerCase()))
+  // filter thru the movies array to check if the genre value includes the type of genre (type) provided while changing the string to case insensitive by using .toLowerCase or .toUpperCase
+}
+//movies.filter((movie) => {return movie.genre.toLowerCase().includes(type.toLowerCase())})
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
  * -----------------------------
@@ -118,7 +134,11 @@ function filterByGenre() {}
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+function getAllMoviesReleasedAtOrBeforeYear(movies,year) {
+  if(!movies.length) throw "Error"; // if movies array is empty throw an error
+  return movies.filter(({released}) => released.split(" ")[2] <= year) 
+  // filters thru the movies array to gets key released thn splits the value str and making it into an arr. Once string is separated go to index 2 and check if the [2] is less thn or = to the year provided
+}
 
 /**
  * checkMinMetascores()
@@ -134,8 +154,11 @@ function getAllMoviesReleasedAtOrBeforeYear() {}
  *  checkMinMetascores(movies, 90));
  *  //>  false
  */
-function checkMinMetascores() {}
-
+function checkMinMetascores(movies, score) {
+  if(!movies.length) throw "Error" // if movies array is empty throw an error
+  return movies.every(({metascore}) => metascore > score ) // checks if every metascore has a min value lower thn the score provide 
+}
+// movies.every((movie) => {return movie.metascore > score }) alternative
 /**
  * getRottenTomatoesScoreByMovie()
  * -----------------------------
@@ -160,7 +183,17 @@ function checkMinMetascores() {}
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() {}
+function getRottenTomatoesScoreByMovie(movies) {
+  if(!movies.length) throw "Error" // if movies array is empty throw an error
+  return movies.map((movie) => { // map thru movies arr
+    const valuePair = movie.ratings.find((getSource) => { 
+      //declare variable to iterate thru the movies arr key ratings and return all the information that is in the sub array that matches the str provided
+      return getSource.source === "Rotten Tomatoes"
+    });
+    return {[movie.title]: valuePair.value}
+    // return the the title as a key and the value of rotten tomatoes as the value.
+  })
+}
 
 // Do not change anything below this line.
 module.exports = {
