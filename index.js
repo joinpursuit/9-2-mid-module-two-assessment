@@ -180,7 +180,12 @@ function checkMinMetascores(movies,metascore) {
  */
 function getRottenTomatoesScoreByMovie(movies) {
   if(movies.length===0) throw "movies are empty.";
-  return movies.map((el)=>({[el.title]:el.ratings.find(({source})=>source==="Rotten Tomatoes").value}));
+  return movies.map((el)=>{
+    
+    let rotten_rating = el.ratings.find(({source})=>source==="Rotten Tomatoes");
+    return {[el.title]:rotten_rating.value}
+
+  })
 }
 
 // Do not change anything below this line.
