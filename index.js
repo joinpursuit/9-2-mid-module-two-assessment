@@ -55,7 +55,12 @@ function getAllMovieTitles(movies) {
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating() {}
+function checkIfAnyMovieHasRating(movies, rating = "G") {
+  if (!movies.length) {
+    throw "error"
+  }
+  return movies.some(({rated}) => rated)
+}
 
 /**
  * findById()
@@ -73,7 +78,12 @@ function checkIfAnyMovieHasRating() {}
       // Toy Story 4
     };
  */
-function findById() {}
+function findById(movies, id) {
+  if (!movies.length) {
+    throw "error"
+  } 
+  return movies.find((movie) => movie.imdbID === id ? movie.title : null )
+}
 
 /**
  * filterByGenre()
