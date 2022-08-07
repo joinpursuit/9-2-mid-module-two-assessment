@@ -55,7 +55,13 @@ function getAllMovieTitles(movies) {
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating() {}
+function checkIfAnyMovieHasRating(movies, rating = "G") {
+    // default movie rating is "G"
+    //throw error if the movies array is empty
+    if (!movies.length) throw "Error";
+    //check that some rates are strictly equal to the given rating
+    return movies.some(({ rated }) => rated === rating);
+}
 
 /**
  * findById()
