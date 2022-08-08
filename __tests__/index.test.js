@@ -249,7 +249,7 @@ describe("getAllMoviesReleasedAtOrBeforeYear()", () => {
   });
 });
 
-describe.only("getRottenTomatoesScoreByMovie()", () => {
+describe("getRottenTomatoesScoreByMovie()", () => {
   test("should use the `.map()` method", () => {
     const text = getRottenTomatoesScoreByMovie.toString();
     expect(text).toMatch(/\.map\(.*\)/s);
