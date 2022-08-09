@@ -120,7 +120,7 @@ describe("findById()", () => {
   });
 });
 
-describe.only("filterByGenre()", () => {
+describe("filterByGenre()", () => {
   test("should use the `.filter()` method", () => {
     const text = filterByGenre.toString();
     expect(text).toMatch(/\.filter\(.*\)/s);
@@ -181,7 +181,7 @@ describe.only("filterByGenre()", () => {
   });
 });
 
-describe("checkMinMetascores()", () => {
+describe.only("checkMinMetascores()", () => {
   test("should use the `.every()` method", () => {
     const text = checkMinMetascores.toString();
     expect(text).toMatch(/\.every\(.*\)/s);
