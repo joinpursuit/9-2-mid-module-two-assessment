@@ -34,6 +34,9 @@ function getAllMovieTitles(movies) {
   if (!movies.length) throw "Error, no movies listed";
 
   // return movies.map(movie => movie.title)
+
+  // return movies.map((movie) => movie.title);
+  
   return movies.map(( { title } ) => title)
 }
 
@@ -58,8 +61,9 @@ function getAllMovieTitles(movies) {
 function checkIfAnyMovieHasRating(movies, rating="G") {
   if (!movies.length) throw "Error, no movies listed.";
 
-  // return movies.some((movie) => movie.rated === rating ) || false
-  return movies.some(( { rated } ) => rated === rating) || false
+  // return movies.some((movie) => movie.rated === rating )
+
+  return movies.some(( { rated } ) => rated === rating) 
 }
 
 /**
@@ -82,6 +86,7 @@ function findById(movies, id) {
   if (!movies.length) throw "Error, no movies listed.";
 
   // return movies.find((ids) => ids.imdbID === id) || null
+
   return movies.find(( { imdbID }) => imdbID === id) || null 
 }
 
@@ -110,6 +115,8 @@ function findById(movies, id) {
 function filterByGenre(movies, genres) {
   if (!movies.length) throw "Error, no movies listed.";
   
+  //return movies.filter((genre) => movie.genre.toLowerCase().includes(genre.toLowerCase()));
+
   return movies.filter(( { genre } ) => genre.toLowerCase().includes(genres.toLowerCase()));
 }
 
@@ -140,6 +147,12 @@ function filterByGenre(movies, genres) {
 function getAllMoviesReleasedAtOrBeforeYear(movies, year ) {
   if (!movies.length) throw "Error, no movies listed."
 
+  // return movies.filter((movie) => movie.released.slice(-4) <= year);
+  // return movies.filter((movie) => movie.released.slice(7) <= year);
+
+  // return movies.filter((movie) => movie.released.split(" ")[2] <= year);
+  // return movies.filter(({ released }) => released.split(" ")[2] <= year);
+
   return movies.filter(( { released }) => released.slice(-4) <= year)
 }
 
@@ -159,6 +172,8 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year ) {
  */
 function checkMinMetascores(movies, meta) {
   if (!movies.length) throw "Error. No movies listed.";
+
+  //return movies.every((movie) => movie.metascore >= metascore);
 
   return movies.every(( { metascore } ) => metascore >= meta)
 }
@@ -192,7 +207,15 @@ function getRottenTomatoesScoreByMovie(movies) {
 
   return movies.map((movie) => {
     let score = movie.ratings.find((sources) => sources.source === "Rotten Tomatoes"); 
-    return {[movie.title]: sources.value}
+    return {[movie.title]: score.value}
+
+    // return movies.map((movie) => {
+  //   return {
+  //     [movie.title]: movie.ratings.find(
+  //       (score) => score.source === "Rotten Tomatoes"
+  //     ).value,
+  //   };
+  // });
   })
 }
 
