@@ -35,11 +35,9 @@ function getAllMovieTitles(movies) {
     throw "Error";
   }
 
-  let movieTitles = movies.map((movie) => {
+  return movies.map((movie) => {
     return movie.title;
   });
-
-  return movieTitles;
 }
 
 /**
@@ -114,16 +112,14 @@ function findById(movies, id) {
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre(movies, genre) {
+function filterByGenre(movies, type) {
   if (movies.length === 0) {
     throw "Error";
   }
 
-  let movieByGenre = [];
-
-  movieByGenre = movies.filter((movie) => {
-    return movie.genre;
-  });
+  return movies.filter(({ genre }) =>
+    genre.toLowerCase().includes(type.toLowerCase())
+  );
 }
 
 /**
@@ -155,9 +151,7 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
     throw "Error";
   }
 
-  return movies.filter((movie) => {
-    movie.year;
-  });
+  return movies.filter(({ released }) => released.split(" ")[2] <= year);
 }
 
 /**
