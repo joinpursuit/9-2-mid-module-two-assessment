@@ -204,6 +204,13 @@ function getRottenTomatoesScoreByMovie(movies) {
   if (movies.length === 0) {
     throw "Error";
   }
+  return movies.map((movie) => {
+    let found = movie.ratings.find(
+      (tomatoScore) => tomatoScore.source === "Rotten Tomatoes"
+    );
+
+    return { [movie.title]: found.value };
+  });
 }
 
 // Do not change anything below this line.
