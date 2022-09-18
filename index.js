@@ -187,11 +187,14 @@ function checkMinMetascores(movies, metascore) {
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie(movies) {
-  if(!movies.length)
-    throw `There were no movies provided in the array!`
-}
-
+    function getRottenTomatoesScoreByMovie(movies) {
+      if (!movies.length) throw 'There are no movies.';
+      return movies.map((movie) => {
+        return {
+          [movie.title]: movie.ratings.find((rating) => rating.source === "Rotten Tomatoes").value
+        }
+      })
+    }
 // Do not change anything below this line.
 module.exports = {
   getAllMovieTitles,
